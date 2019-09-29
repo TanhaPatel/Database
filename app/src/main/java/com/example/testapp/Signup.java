@@ -134,18 +134,9 @@ public class Signup extends AppCompatActivity implements View.OnClickListener {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         //checking if success
                         if(task.isSuccessful()){
-                            // pushing data to firebase
-                            Data details = new Data(fullname, username, email);
+                            Toast.makeText(Signup.this, "Registeration Successful", Toast.LENGTH_LONG).show();
+                            startActivity(new Intent(Signup.this, MainActivity.class));
 
-                            FirebaseDatabase.getInstance().getReference("User")
-                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                    .setValue(details).addOnCompleteListener(new OnCompleteListener<Void>() {
-
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    Toast.makeText(Signup.this, "Registeration Successful", Toast.LENGTH_LONG).show();
-                                    startActivity(new Intent(Signup.this, MainActivity.class));
-                                }
-                            });
                         } else {
                             //display some message here
                             Toast.makeText(Signup.this,"Registration Error",Toast.LENGTH_LONG).show();

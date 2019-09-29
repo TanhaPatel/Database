@@ -1,25 +1,32 @@
 package com.example.testapp;
 
-import com.google.firebase.database.Exclude;
 import com.google.firebase.database.IgnoreExtraProperties;
 
-import java.util.HashMap;
-import java.util.Map;
-
 @IgnoreExtraProperties
-public class UserTasks {
-private String task_1;
-    public UserTasks(){}
+public class TaskRetrieve {
 
-    public UserTasks(String task_1) {
-        this.task_1 = task_1;
+    private String task,id;
+
+    public TaskRetrieve(){}
+
+    public TaskRetrieve(String task, String id) {
+        this.task = task;
+        this.id = id;
     }
 
-    public String getTask_1() {
-        return task_1;
+    public String getTask() {
+        return task;
     }
 
-    public void setTask_1(String task_1) {
-        this.task_1 = task_1;
+    public void setTask(String task) {
+        this.task = task;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

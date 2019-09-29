@@ -8,7 +8,7 @@
     tools:context=".AddTask">
 
     <EditText
-        android:id="@+id/addTaskEditTask"
+        android:id="@+id/addTaskEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Add Task"

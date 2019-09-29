@@ -25,8 +25,8 @@
         <activity android:name=".AddTask" />
         <activity android:name=".ViewTask" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".Signup" />
-        <activity android:name=".Login">
+        <activity android:name=".Login" />
+        <activity android:name=".Signup">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
