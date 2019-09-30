@@ -1,14 +1,9 @@
 package com.example.testapp;
 
 import android.app.ProgressDialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.text.method.HideReturnsTransformationMethod;
@@ -27,7 +22,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class Signup extends AppCompatActivity implements View.OnClickListener {
+public class SignUp extends AppCompatActivity implements View.OnClickListener {
 
     //defining view objects
     private EditText signupnameEditText;
@@ -127,20 +122,20 @@ public class Signup extends AppCompatActivity implements View.OnClickListener {
 
         //creating a new user
         firebaseAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        //checking if success
-                        if(task.isSuccessful()){
-                            sendVerificationEmail();
+            .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                //checking if success
+                if(task.isSuccessful()){
+                    sendVerificationEmail();
 
-                        } else {
-                            // if failed
-                            Toast.makeText(Signup.this,"Registration Error",Toast.LENGTH_LONG).show();
-                        }
-                        progressDialog.dismiss();
-                    }
-                });
+                } else {
+                    // if failed
+                    Toast.makeText(SignUp.this,"Registration Error",Toast.LENGTH_LONG).show();
+                }
+                progressDialog.dismiss();
+                }
+            });
     }
 
     // show password code starts
@@ -166,20 +161,20 @@ public class Signup extends AppCompatActivity implements View.OnClickListener {
             .addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
-                    if (task.isSuccessful()) {
-                        // email sent
-                        // after email is sent just logout the user and finish this activity
-                        FirebaseAuth.getInstance().signOut();
-                        startActivity(new Intent(Signup.this, Login.class));
-                        finish();
-                    } else {
-                        // email not sent, so display message and restart the activity or do whatever you wish to do
-                        //restart this activity
-                        overridePendingTransition(0, 0);
-                        finish();
-                        overridePendingTransition(0, 0);
-                        startActivity(getIntent());
-                    }
+                if (task.isSuccessful()) {
+                    // email sent
+                    // after email is sent just logout the user and finish this activity
+                    FirebaseAuth.getInstance().signOut();
+                    startActivity(new Intent(SignUp.this, Login.class));
+                    finish();
+                } else {
+                    // email not sent, so display message and restart the activity or do whatever you wish to do
+                    //restart this activity
+                    overridePendingTransition(0, 0);
+                    finish();
+                    overridePendingTransition(0, 0);
+                    startActivity(getIntent());
+                }
                 }
             });
     }

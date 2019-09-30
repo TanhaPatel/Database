@@ -26,7 +26,7 @@
 
         <receiver android:name=".MyBroadcastReceiver" />
 
-        <activity android:name=".Signup" />
+        <activity android:name=".SignUp" />
         <activity android:name=".AddTask" />
         <activity android:name=".ViewTask" />
         <activity android:name=".MainActivity" />

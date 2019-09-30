@@ -130,9 +130,9 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                     //start the profile activity
                     checkIfEmailVerified();
 
-                }  else {
+                } else {
                     Toast.makeText(Login.this, "You don't have registered. Please register first.", Toast.LENGTH_LONG).show();
-                    startActivity(new Intent(Login.this, Signup.class));
+                    startActivity(new Intent(Login.this, SignUp.class));
 
                 }
                 }
@@ -158,7 +158,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
             // NOTE: don't forget to log out the user.
             Toast.makeText(this, "Email not verified yet", Toast.LENGTH_LONG).show();
             FirebaseAuth.getInstance().signOut();
-            startActivity(new Intent(this, Signup.class));
+            startActivity(new Intent(this, SignUp.class));
 
         }
     }
@@ -193,7 +193,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
         if (v == signupbtn) {
             finish();
-            startActivity(new Intent(this, Signup.class));
+            startActivity(new Intent(this, SignUp.class));
         }
 
         if (v == gsignin) {
@@ -239,13 +239,13 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             FirebaseUser user = firebaseAuth.getCurrentUser();
-                            Toast.makeText(Login.this, ""+user.getEmail(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Login.this, "Welcome "+user.getEmail(), Toast.LENGTH_LONG).show();
                             // startActivity(new Intent(Login.this,AfterLogin1.class));
                             // finish();
                             updateUI(user);
                         } else {
                             // If sign in fails, display a message to the user.
-                            Toast.makeText(Login.this,"Failed to Sign in",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Login.this,"Failed to Sign in",Toast.LENGTH_LONG).show();
                             // updateUI(null);
                         }
                     }
