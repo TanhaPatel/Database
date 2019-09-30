@@ -121,24 +121,49 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
         //logging in the user
         firebaseAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        progressDialog.dismiss();
-                        //if the task is successfull
-                        if(task.isSuccessful()){
-                            //start the profile activity
-                            finish();
-                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                        }  else {
-                            Toast.makeText(Login.this, "You don't have registered. Please register first.", Toast.LENGTH_LONG).show();
-                            startActivity(new Intent(Login.this, Signup.class));
-                        }
-                    }
-                });
+            .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                progressDialog.dismiss();
+                //if the task is successfull
+                if(task.isSuccessful()){
+                    //start the profile activity
+                    checkIfEmailVerified();
+
+                }  else {
+                    Toast.makeText(Login.this, "You don't have registered. Please register first.", Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(Login.this, Signup.class));
+
+                }
+                }
+            });
     }
 
     //method for user login ends
+
+    // checking if user is verified or not code starts
+
+    private void checkIfEmailVerified() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        if (user.isEmailVerified())
+        {
+            // user is verified, so you can finish this activity or send user to activity which you want.
+            Toast.makeText(Login.this, "Successfully logged in", Toast.LENGTH_LONG).show();
+            finish();
+            startActivity(new Intent(this, MainActivity.class));
+
+        } else {
+            // email is not verified, so just prompt the message to the user and restart this activity.
+            // NOTE: don't forget to log out the user.
+            Toast.makeText(this, "Email not verified yet", Toast.LENGTH_LONG).show();
+            FirebaseAuth.getInstance().signOut();
+            startActivity(new Intent(this, Signup.class));
+
+        }
+    }
+
+    // checking if user is verified or not code ends
 
     // show password code starts
 
@@ -179,7 +204,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
             showpassword();
         }
     }
-
 
     // Configure Google Sign In
     @Override

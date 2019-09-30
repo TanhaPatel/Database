@@ -8,10 +8,10 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/addNote"
+        android:id="@+id/addTask"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add Note"
+        android:text="Add Task"
         android:layout_gravity="center"
         android:layout_marginTop="300dp" />
 
@@ -20,6 +20,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="View Task"
+        android:layout_gravity="center" />
+
+    <Button
+        android:id="@+id/editTask"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Edit Task"
         android:layout_gravity="center" />
 
 </LinearLayout>

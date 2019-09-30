@@ -8,7 +8,7 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button addNote;
+    Button addTask;
     Button viewTask;
 
     @Override
@@ -16,10 +16,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        addNote = findViewById(R.id.addNote);
+        addTask = findViewById(R.id.addTask);
         viewTask = findViewById(R.id.viewTask);
 
-        addNote.setOnClickListener(new View.OnClickListener() {
+        addTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MainActivity.this, AddTask.class));
