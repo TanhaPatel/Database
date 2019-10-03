@@ -17,23 +17,25 @@ import android.support.v4.app.TaskStackBuilder;
 import android.widget.Toast;
 
 public class MyBroadcastReceiver extends BroadcastReceiver {
+
     private static final int DAILY_REMINDER_REQUEST_CODE = 1;
     MediaPlayer mp;
+
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
     public void onReceive(Context context, Intent intent) {
         Uri uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
         Ringtone ringtone = RingtoneManager.getRingtone(context, uri);
         ringtone.play();
-        Toast.makeText(context, "Alarm........", Toast.LENGTH_LONG).show();
+
+        Toast.makeText(context, "Alarm...", Toast.LENGTH_LONG).show();
 
         showNotification(context, MainActivity.class,
-                "Hello", "Hi this is test notification...");
+                "Task Planner", "Time to complete task");
     }
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public static void showNotification(Context context, Class<?> cls, String title, String content)
-    {
+    public static void showNotification(Context context, Class<?> cls, String title, String content) {
         Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 
         Intent notificationIntent = new Intent(context, cls);

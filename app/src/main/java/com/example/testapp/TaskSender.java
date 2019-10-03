@@ -1,23 +1,18 @@
 package com.example.testapp;
 
-import java.util.Calendar;
+import java.util.Date;
 import java.util.Date;
 
 public class TaskSender {
 
-    String id, task;
+    String task;
     Date datentime;
 
     public TaskSender(){}
 
-    public TaskSender( Date datentime, String id, String task) {
+    public TaskSender(Date datentime, String task) {
         this.datentime = datentime;
-        this.id = id;
         this.task = task;
-    }
-
-    public String getId() {
-        return id;
     }
 
     public Date getDatentime() {
@@ -26,10 +21,6 @@ public class TaskSender {
 
     public void setDatentime(Date datentime) {
         this.datentime = datentime;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getTask() {

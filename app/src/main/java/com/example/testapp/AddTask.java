@@ -37,7 +37,8 @@ public class AddTask extends AppCompatActivity {
     FirebaseDatabase firebaseDatabase;
     FirebaseAuth firebaseAuth;
     DatabaseReference databaseReference;
-    private Date datentime;
+    //Calendar datentime;
+    Date datentime;
     String userid, email;
 
     @Override
@@ -58,32 +59,31 @@ public class AddTask extends AppCompatActivity {
         pickerTime = findViewById(R.id.pickertime);
         Calendar now = Calendar.getInstance();
         pickerDate.init(
-                now.get(Calendar.YEAR),
-                now.get(Calendar.MONTH),
-                now.get(Calendar.DAY_OF_MONTH),
-                null);
+            now.get(Calendar.YEAR),
+            now.get(Calendar.MONTH),
+            now.get(Calendar.DAY_OF_MONTH),
+            null);
         pickerTime.setCurrentHour(now.get(Calendar.HOUR_OF_DAY));
         pickerTime.setCurrentMinute(now.get(Calendar.MINUTE));
 
         addTaskBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Calendar current = Calendar.getInstance();
-                Calendar cal = Calendar.getInstance();
-                cal.set(pickerDate.getYear(),
-                        pickerDate.getMonth(),
-                        pickerDate.getDayOfMonth(),
-                        pickerTime.getCurrentHour(),
-                        pickerTime.getCurrentMinute(),
-                        00);
+            Calendar cal = Calendar.getInstance();
+            cal.set(pickerDate.getYear(),
+                    pickerDate.getMonth(),
+                    pickerDate.getDayOfMonth(),
+                    pickerTime.getCurrentHour(),
+                    pickerTime.getCurrentMinute(),
+                    00);
 
-                datentime = cal.getTime();
-                addtask();
+            datentime = cal.getTime();
+            addtask();
             }
         });
     }
 
-    /*//data using username
+    //data using username
     public void addtask() {
 
         String user_task = addTaskEditText.getText().toString();
@@ -96,15 +96,15 @@ public class AddTask extends AppCompatActivity {
 
         } else {
             String id = databaseReference.push().getKey();
-            TaskSender ts = new TaskSender(datentime, id, user_task);
+            TaskSender ts = new TaskSender(datentime, user_task);
             addTaskEditText.setText("");
-            databaseReference.child(email).setValue(ts);
+            databaseReference.child(email).child(id).setValue(ts);
             Toast.makeText(this, "Task added successfully", Toast.LENGTH_LONG).show();
 
         }
-    }*/
+    }
 
-    //data using userid
+    /*//data using userid
     public void addtask() {
 
         String user_task = addTaskEditText.getText().toString();
@@ -122,5 +122,5 @@ public class AddTask extends AppCompatActivity {
             Toast.makeText(this, "Task added successfully", Toast.LENGTH_LONG).show();
 
         }
-    }
+    }*/
 }
